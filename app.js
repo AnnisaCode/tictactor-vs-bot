@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const cell = e.target;
         const cellIndex = cells.indexOf(cell);
 
-        if (gameState[cellIndex] !== '' || checkWin() || checkDraw()) {
+        if (gameState[cellIndex] !== '' || checkWin() || checkDraw() || currentPlayer === 'O') {
             return;
         }
 
@@ -29,20 +29,12 @@ document.addEventListener('DOMContentLoaded', () => {
         cell.textContent = currentPlayer;
 
         if (checkWin()) {
-            Swal.fire({
-                title: `Player ${currentPlayer} wins!`,
-                icon: 'success',
-                confirmButtonText: 'OK'
-            });
+            alert(`Player ${currentPlayer} wins!`);
             return;
         }
 
         if (checkDraw()) {
-            Swal.fire({
-                title: "It's a draw!",
-                icon: 'info',
-                confirmButtonText: 'OK'
-            });
+            alert("It's a draw!");
             return;
         }
 
@@ -50,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
         playerTurn.textContent = `Player ${currentPlayer}'s Turn`;
 
         if (currentPlayer === 'O') {
+            board.style.pointerEvents = 'none'; // Nonaktifkan klik saat giliran bot
             setTimeout(botMove, 3000); // Menambahkan jeda 3 detik sebelum bot membuat langkah
         }
     };
@@ -67,25 +60,18 @@ document.addEventListener('DOMContentLoaded', () => {
         cells[randomIndex].textContent = 'O';
 
         if (checkWin()) {
-            Swal.fire({
-                title: 'Player O wins!',
-                icon: 'success',
-                confirmButtonText: 'OK'
-            });
+            alert('Player O wins!');
             return;
         }
 
         if (checkDraw()) {
-            Swal.fire({
-                title: "It's a draw!",
-                icon: 'info',
-                confirmButtonText: 'OK'
-            });
+            alert("It's a draw!");
             return;
         }
 
         currentPlayer = 'X';
         playerTurn.textContent = `Player ${currentPlayer}'s Turn`;
+        board.style.pointerEvents = 'auto'; // Aktifkan kembali klik setelah bot bergerak
     };
 
     const checkWin = () => {
@@ -103,6 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cells.forEach(cell => cell.textContent = '');
         currentPlayer = 'X';
         playerTurn.textContent = `Player ${currentPlayer}'s Turn`;
+        board.style.pointerEvents = 'auto'; // Aktifkan kembali klik setelah restart
     };
 
     cells.forEach(cell => cell.addEventListener('click', handleCellClick));
