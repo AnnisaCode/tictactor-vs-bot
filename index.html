@@ -13,9 +13,13 @@
 
 <body>
     <div class="container mt-5">
-        <h1 class="text-center">Tic-Tac-Toe Game</h1>
+        <h1 class="text-center mb-4">Tic-Tac-Toe vs Bot</h1>
         <div class="row justify-content-center">
             <div class="col-md-6 text-center">
+                <div class="d-flex justify-content-between mb-2">
+                    <div class="score-box bg-light p-2 rounded">Player X: <span id="scoreX">0</span></div>
+                    <div class="score-box bg-light p-2 rounded">Bot O: <span id="scoreO">0</span></div>
+                </div>
                 <div class="alert alert-info" id="playerTurn">Player X's Turn</div>
                 <div class="board" id="board">
                     <div class="cell" data-index="0"></div>
@@ -29,6 +33,7 @@
                     <div class="cell" data-index="8"></div>
                 </div>
                 <button class="btn btn-primary mt-3" id="restartBtn">Restart Game</button>
+                <button class="btn btn-secondary mt-3 ml-2" id="toggleThemeBtn">Toggle Theme</button>
             </div>
         </div>
     </div>

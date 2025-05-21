@@ -23,10 +23,60 @@ body {
     font-size: 36px;
     font-weight: bold;
     cursor: pointer;
+    transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .cell:hover {
     background-color: #e9ecef;
+}
+
+.cell.winner {
+    background-color: #ffe066 !important;
+    color: #212529;
+    animation: winnerFlash 0.7s alternate 3;
+}
+
+@keyframes winnerFlash {
+    from {
+        box-shadow: 0 0 10px 2px #ffe066;
+    }
+
+    to {
+        box-shadow: 0 0 30px 10px #ffd700;
+    }
+}
+
+body.dark-theme {
+    background-color: #181a1b;
+    color: #f8f9fa;
+}
+
+body.dark-theme .board {
+    background: #23272b;
+}
+
+body.dark-theme .cell {
+    background-color: #23272b;
+    color: #f8f9fa;
+    border-color: #ffc107;
+}
+
+body.dark-theme .cell.winner {
+    background-color: #ffc107 !important;
+    color: #23272b;
+}
+
+body.dark-theme .alert,
+body.dark-theme .score-box {
+    background: #343a40 !important;
+    color: #f8f9fa !important;
+}
+
+.score-box {
+    min-width: 100px;
+    font-size: 16px;
+    font-weight: 500;
 }
 
 .alert {
@@ -35,5 +85,7 @@ body {
 }
 
 button {
-    width: 100%;
+    width: auto;
+    min-width: 120px;
+    margin-right: 5px;
 }
